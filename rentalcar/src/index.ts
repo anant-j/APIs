@@ -19,7 +19,7 @@ export default {
 
 		if (start && end && kms) {
 			var data = await totalPriceCalculator(start, end, Number(kms));
-			data += `Version: ${version}`;
+			data["version"] = version;
 			return new Response(JSON.stringify(data));
 		} else {
 			return new Response('Invalid parameters');

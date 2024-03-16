@@ -27,10 +27,11 @@ export async function modoCalculator(start: string, end: string, kms: number) {
     };
 
     const urlWithParams = new URL(url);
+    console.log(params);
     urlWithParams.search = new URLSearchParams(params).toString();
     let response = await fetch(urlWithParams, { method: 'GET', headers: headers });
     if (response.status !== 200) {
-        console.log(response);
+        // console.log(response);
         return -1;
     }
     let data: any = await response.json();
