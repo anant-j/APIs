@@ -11,7 +11,7 @@ import { version } from "../package.json";
  */
 
 export default {
-	async fetch(request: Request): Promise<Response> {
+	async fetch(request: Request, env: any, ctx: any): Promise<Response> {
 		const url = new URL(request.url);
 		const path = url.pathname;
 
