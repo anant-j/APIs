@@ -1,5 +1,5 @@
-import { totalPriceCalculator } from "./calculator";
-import { version } from "../package.json";
+import { totalPriceCalculator } from './calculator';
+import { version } from '../package.json';
 /**
  * Welcome to Cloudflare Workers! This is your first worker.
  *
@@ -13,15 +13,16 @@ import { version } from "../package.json";
 export default {
 	async fetch(request: Request, env: any, ctx: any): Promise<Response> {
 		const url = new URL(request.url);
-		const start = url.searchParams.get("start");
-		const end = url.searchParams.get("end");
-		const kms = url.searchParams.get("kms");
+		const start = url.searchParams.get('start');
+		const end = url.searchParams.get('end');
+		const kms = url.searchParams.get('kms');
 
 		if (start && end && kms) {
-			const data = await totalPriceCalculator(start, end, Number(kms));
+			var data = await totalPriceCalculator(start, end, Number(kms));
+			data += `Version: ${version}`;
 			return new Response(JSON.stringify(data));
 		} else {
-			return new Response("Invalid parameters");
+			return new Response('Invalid parameters');
 		}
 	},
 };
